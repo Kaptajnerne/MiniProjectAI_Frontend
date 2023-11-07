@@ -1,0 +1,7 @@
+.fast-font {
+    font-family: 'Arial', sans-serif; /* You can change 'Arial' to another font if desired */
+    font-weight: bold;
+    letter-spacing: 1px;
+    transform: skewX(-10deg); /* Adjust the degree value to control the forward lean effect */
+    display: inline-block;
+}
