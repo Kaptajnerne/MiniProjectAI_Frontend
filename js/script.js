@@ -1,7 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("specForm");
+    const spinner = document.getElementById("spinner"); // Get the spinner element
+    const responseElement = document.getElementById("response");
+
     form.addEventListener("submit", function(event) {
         event.preventDefault();
+
+        // Show the spinner when the form is submitted
+        spinner.style.display = "block";
 
         // Get form data
         const primaryUsage = document.getElementById("usage").value;
@@ -34,14 +40,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 const content = apiResponse[0].message.content;
 
                 // If you want to display the response in the frontend, update the DOM here
-                const responseElement = document.getElementById("response");
-
-                // Display the extracted message in a readable format
                 responseElement.textContent = content;
+
+                // Hide the spinner when the response is received
+                spinner.style.display = "none";
             })
             .catch(error => {
                 // Handle errors
                 console.error("Error:", error);
+
+                // Hide the spinner in case of errors
+                spinner.style.display = "none";
             });
     });
 });
