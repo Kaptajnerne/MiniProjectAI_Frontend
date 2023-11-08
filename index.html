@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>SpecSeeker</title>
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7Rxnatzjcddwdwfwfgwrefwf">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7Rxnatzjcddwdwfwfgwrefwf" crossorigin="anonymous">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Awesome font -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
+
 <body>
 <!-- Header -->
 <div id="header-container"></div>
@@ -20,14 +23,18 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 mt-4 form-box-style">
             <h3 class="text-center">Fill in your computer specs:</h3>
-            <form>
+            <!-- Added id attribute to the form element -->
+            <form id="specForm">
                 <div class="mb-3">
-                    <label for="budget" class="form-label">Budget:</label>
+                    <label for="budget" class="form-label">Budget "$":</label>
                     <input type="text" class="form-control" id="budget">
                 </div>
                 <div class="mb-3">
                     <label for="usage" class="form-label">Usage:</label>
-                    <input type="text" class="form-control" id="usage">
+                    <select class="form-select" id="usage">
+                        <option value="Gaming">Gaming</option>
+                        <option value="work">Work</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="hardware" class="form-label">Form of Hardware:</label>
@@ -45,25 +52,18 @@
         </div>
     </div>
 
-    <div id="response">
-        <!-- The reponse from the API is inserted here -->
-    </div>
-    <!-- The response from the chatgpt will be inside of this html code - It's properly gonna be used in JS
-    <br>
+    <!-- Computer Specs -->
     <div class="row justify-content-center">
         <div class="col-lg-8 mt-4 form-box-style">
             <h3 class="text-center">Computer Specs:</h3>
-            <h5 class="text-center">The computer specs chosen to fit your current budget and usage style</h5>
             <br>
-            <div>
-                ALL OF THE COMPONENTS ARE PUT HERE
+            <div id="response">
+
+                <!-- The response from the API will be inserted here -->
             </div>
         </div>
     </div>
-    -->
 </div>
-
-<br>
 
 <!-- Footer -->
 <div id="footer-container"></div>
@@ -71,5 +71,51 @@
 <!-- JavaScript -->
 <script src="js/header.js"></script>
 <script src="js/footer.js"></script>
+<script src="js/modulejson.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.getElementById("specForm");
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const primaryUsage = document.getElementById("usage").value;
+            const formFactor = document.getElementById("hardware").value;
+            const budget = parseFloat(document.getElementById("budget").value);
+            const other = document.getElementById("others").value;
+
+            // Prepare data object
+            const data = {
+                primaryUsage: primaryUsage,
+                formFactor: formFactor,
+                budget: budget,
+                other: other
+            };
+
+            // Send data to backend API
+            fetch("http://localhost:8082/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(apiResponse => {
+                    // Handle the response from the backend API
+                    console.log(apiResponse);
+
+                    // If you want to display the response in the frontend, update the DOM here
+                    const responseElement = document.getElementById("response");
+                    responseElement.textContent = JSON.stringify(apiResponse, null, 2);
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error("Error:", error);
+                });
+        });
+    });
+</script>
 </body>
+
 </html>
