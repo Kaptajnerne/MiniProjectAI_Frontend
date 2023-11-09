@@ -7,6 +7,8 @@
     <list default="true" id="d10822b5-77c3-45de-ad49-e3a0ffe3f280" name="Changes" comment="Visual part is finished">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/modulejson.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/modulejson.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +87,7 @@
       <workItem from="1699381516859" duration="830000" />
       <workItem from="1699382359942" duration="3720000" />
       <workItem from="1699443690057" duration="3376000" />
+      <workItem from="1699522549067" duration="1104000" />
     </task>
     <task id="LOCAL-00001" summary="Visual part of frontend">
       <option name="closed" value="true" />

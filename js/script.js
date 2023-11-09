@@ -6,16 +6,15 @@ document.addEventListener("DOMContentLoaded", function() {
     form.addEventListener("submit", function(event) {
         event.preventDefault();
 
-        // Show the spinner when the form is submitted
+        //Show spinner when the form is submitted
         spinner.style.display = "block";
 
-        // Get form data
+        //Get form data
         const primaryUsage = document.getElementById("usage").value;
         const formFactor = document.getElementById("hardware").value;
         const budget = parseFloat(document.getElementById("budget").value);
         const other = document.getElementById("others").value;
 
-        // Prepare data object
         const data = {
             primaryUsage: primaryUsage,
             formFactor: formFactor,
@@ -33,23 +32,15 @@ document.addEventListener("DOMContentLoaded", function() {
         })
             .then(response => response.json())
             .then(apiResponse => {
-                // Handle the response from the backend API
                 console.log(apiResponse);
 
-                // Extract relevant information from the response
+                //Extract information from response
                 const content = apiResponse[0].message.content;
-
-                // Display the complete content
                 responseElement.innerHTML = content;
-
-                // Hide the spinner when the response is received
                 spinner.style.display = "none";
             })
             .catch(error => {
-                // Handle errors
                 console.error("Error:", error);
-
-                // Hide the spinner in case of errors
                 spinner.style.display = "none";
             });
     });

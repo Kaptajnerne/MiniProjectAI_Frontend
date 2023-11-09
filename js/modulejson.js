@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const primaryUsage = document.getElementById("usage").value;
         const formFactor = document.getElementById("hardware").value;
         const budget = parseFloat(document.getElementById("budget").value);
-        const popularity = document.getElementById("popularity").value;
         const other = document.getElementById("others").value;
 
         // Prepare data object
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
             primaryUsage: primaryUsage,
             formFactor: formFactor,
             budget: budget,
-            popularity: popularity,
             other: other
         };
 
