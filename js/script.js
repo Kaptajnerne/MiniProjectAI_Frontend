@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("specForm");
-    const spinner = document.getElementById("spinner"); // Get the spinner element
+    const spinner = document.getElementById("spinner");
     const responseElement = document.getElementById("response");
 
     form.addEventListener("submit", function(event) {
@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Extract relevant information from the response
                 const content = apiResponse[0].message.content;
 
-                // If you want to display the response in the frontend, update the DOM here
-                responseElement.textContent = content;
+                // Display the complete content
+                responseElement.innerHTML = content;
 
                 // Hide the spinner when the response is received
                 spinner.style.display = "none";
