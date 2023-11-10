@@ -24,8 +24,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 mt-4 form-box-style">
             <h3 class="text-center">Fill in your computer specs:</h3>
-            <!-- Added id attribute to the form element -->
-            <form id="specForm">
+            <form id="form">
                 <div class="mb-3">
                     <label for="budget" class="form-label">Budget "$":</label>
                     <input type="text" class="form-control" id="budget">
@@ -42,6 +41,13 @@
                     <select class="form-select" id="hardware">
                         <option value="laptop">Laptop</option>
                         <option value="desktop">Desktop</option>
+                    </select>
+                </div>
+                <div id="buildTypeContainer" class="mb-3">
+                    <label for="buildType" class="form-label">Build Type:</label>
+                    <select class="form-select" id="buildType">
+                        <option value="prebuilt pc">Prebuilt PC</option>
+                        <option value="custom pc">Custom PC</option>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -62,7 +68,7 @@
                 <div id="spinner" class="spinner-border text-primary" role="status" style="display: none;">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-                <!-- The response from the API will be inserted here -->
+                <!-- Response from chatGPT -->
             </div>
 
 
@@ -76,8 +82,8 @@
 <!-- JavaScript -->
 <script src="js/header.js"></script>
 <script src="js/footer.js"></script>
-<script src="js/modulejson.js"></script>
 <script src="js/script.js"></script>
+<script src="js/choosebuildtype.js"></script>
 </body>
 
 </html>

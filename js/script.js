@@ -1,23 +1,25 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("specForm");
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("form");
     const spinner = document.getElementById("spinner");
     const responseElement = document.getElementById("response");
 
-    form.addEventListener("submit", function(event) {
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        //Show spinner when the form is submitted
+        //Loading spinner
         spinner.style.display = "block";
 
-        //Get form data
+        //Get form data and make it an object
         const primaryUsage = document.getElementById("usage").value;
-        const formFactor = document.getElementById("hardware").value;
+        const hardware = document.getElementById("hardware").value;
+        const buildType = document.getElementById("buildType").value;
         const budget = parseFloat(document.getElementById("budget").value);
         const other = document.getElementById("others").value;
 
         const data = {
             primaryUsage: primaryUsage,
-            formFactor: formFactor,
+            hardware: hardware,
+            buildType: buildType,
             budget: budget,
             other: other
         };
@@ -34,9 +36,8 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(apiResponse => {
                 console.log(apiResponse);
 
-                //Extract information from response
-                const content = apiResponse[0].message.content;
-                responseElement.innerHTML = content;
+                const message = apiResponse[0].message.content.replace(/\n+/g, "\n");
+                responseElement.textContent = message;
                 spinner.style.display = "none";
             })
             .catch(error => {
@@ -45,3 +46,4 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 });
+
