@@ -6,10 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        //Loading spinner
         spinner.style.display = "block";
 
-        //Get form data and make it an object
         const primaryUsage = document.getElementById("usage").value;
         const hardware = document.getElementById("hardware").value;
         const buildType = document.getElementById("buildType").value;
@@ -24,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
             other: other
         };
 
-        // Send data to backend API
         fetch("http://localhost:8082/chat", {
             method: "POST",
             headers: {

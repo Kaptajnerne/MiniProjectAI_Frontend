@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const buildTypeContainer = document.getElementById("buildTypeContainer");
 
     buildTypeContainer.style.display = "none";
-    //If desktop is chosen, choose build type afterwards
+
     function handleHardwareChange() {
         const hardware = document.getElementById("hardware").value;
         if (hardware === "desktop") {
